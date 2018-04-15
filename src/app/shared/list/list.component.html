@@ -1,0 +1,19 @@
+<div class="item" *ngFor="let item of items">
+  <div class="column" *ngFor="let column of columns">
+    <div class="text" *ngIf="!column.hasTemplate">
+      <span>{{ column.text }}</span>
+      <span>{{ column.subtext }}</span>
+    </div>
+
+    <div *ngIf="column.hasTemplate">
+      <ng-container
+        #templateContainer
+        *ngTemplateOutlet="useTemplate(column.name); context: { $implicit: item }">
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<!-- <div>
+  <ng-container [ngTemplateOutlet]="useTemplate('child')"></ng-container>
+</div> -->
